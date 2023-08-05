@@ -11,20 +11,17 @@ import {
   LayoutChangeEvent,
   BackHandler,
   KeyboardAvoidingView,
-  Keyboard,
   ScrollView,
   FlatList,
   SectionList,
   Platform,
   StatusBar,
-  KeyboardEvent,
   NativeSyntheticEvent,
   NativeScrollEvent,
   StyleSheet,
   KeyboardAvoidingViewProps,
   ViewStyle,
   NativeEventSubscription,
-  EmitterSubscription, ViewProps,
 } from 'react-native';
 import {
   PanGestureHandler,
@@ -39,7 +36,7 @@ import { IProps, TOpen, TClose, TStyle, IHandles, TPosition } from './options';
 import { useDimensions } from './utils/use-dimensions';
 import { getSpringConfig } from './utils/get-spring-config';
 import { isIphoneX, isIos, isAndroid } from './utils/devices';
-import { isBelowRN65, isRNGH2 } from './utils/libraries';
+import { isRNGH2 } from './utils/libraries';
 import { invariant } from './utils/invariant';
 import { composeRefs } from './utils/compose-refs';
 import s from './styles';
@@ -273,25 +270,25 @@ const ModalizeBase = (
 
       panGestureAnimatedValue
         ? Animated.timing(panGestureAnimatedValue, {
-          toValue: toPanValue,
-          duration: PAN_DURATION,
-          easing: Easing.ease,
-          useNativeDriver,
-        })
+            toValue: toPanValue,
+            duration: PAN_DURATION,
+            easing: Easing.ease,
+            useNativeDriver,
+          })
         : Animated.delay(0),
 
       spring
         ? Animated.spring(translateY, {
-          ...getSpringConfig(spring),
-          toValue,
-          useNativeDriver: USE_NATIVE_DRIVER,
-        })
+            ...getSpringConfig(spring),
+            toValue,
+            useNativeDriver: USE_NATIVE_DRIVER,
+          })
         : Animated.timing(translateY, {
-          toValue,
-          duration: timing.duration,
-          easing: timing.easing,
-          useNativeDriver: USE_NATIVE_DRIVER,
-        }),
+            toValue,
+            duration: timing.duration,
+            easing: timing.easing,
+            useNativeDriver: USE_NATIVE_DRIVER,
+          }),
     ]).start(() => {
       if (onOpened) {
         onOpened();
@@ -327,25 +324,25 @@ const ModalizeBase = (
 
       panGestureAnimatedValue
         ? Animated.timing(panGestureAnimatedValue, {
-          toValue: 0,
-          duration: PAN_DURATION,
-          easing: Easing.ease,
-          useNativeDriver,
-        })
+            toValue: 0,
+            duration: PAN_DURATION,
+            easing: Easing.ease,
+            useNativeDriver,
+          })
         : Animated.delay(0),
 
       spring
         ? Animated.spring(translateY, {
-          ...getSpringConfig(spring),
-          toValue,
-          useNativeDriver: USE_NATIVE_DRIVER,
-        })
+            ...getSpringConfig(spring),
+            toValue,
+            useNativeDriver: USE_NATIVE_DRIVER,
+          })
         : Animated.timing(translateY, {
-          duration: timing.duration,
-          easing: Easing.out(Easing.ease),
-          toValue,
-          useNativeDriver: USE_NATIVE_DRIVER,
-        }),
+            duration: timing.duration,
+            easing: Easing.out(Easing.ease),
+            toValue,
+            useNativeDriver: USE_NATIVE_DRIVER,
+          }),
     ]).start(() => {
       if (onClosed) {
         onClosed();
@@ -498,8 +495,8 @@ const ModalizeBase = (
       isAndroid
         ? false
         : alwaysOpen
-          ? beginScrollYValue > 0 || translationY < 0
-          : enableBouncesValue,
+        ? beginScrollYValue > 0 || translationY < 0
+        : enableBouncesValue,
     );
 
     if (nativeEvent.oldState === State.ACTIVE) {
